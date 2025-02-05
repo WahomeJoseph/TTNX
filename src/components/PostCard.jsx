@@ -5,10 +5,14 @@ import { NewPost } from './NewPost'
 import PropTypes from 'prop-types'
 import { Modal } from './Modal'
 
-export const PostCard = () => {
+export const PostCard = ({isPosting, onStopPosting}) => {
     const [message, setMessage] = useState('')
     const [username,setUserName] = useState('')
     const [showModal, setShowModal] = useState(true)
+
+    const toggleModal = () => {
+        setShowModal(true)
+    }
 
     const handleModal = () => {
         setShowModal(false)
@@ -18,13 +22,13 @@ export const PostCard = () => {
         setMessage(event.target.value)
     }
 
-    const handleName = () => {
+    const handleName = (event) => {
         setUserName(event.target.value)
     }
   return (
     <> 
-       {showModal ? (
-        <Modal onClose={handleModal}>
+       {isPosting ? (
+        <Modal onClose={onStopPosting}>
             <NewPost messageChange={handleMessage} nameChange={handleName}/>
         </Modal> 
        ) : null}
@@ -39,8 +43,10 @@ export const PostCard = () => {
 }
 
 PostCard.propTypes = {
+    isPosting: PropTypes.bool.isRequired,
     message: PropTypes.string.isRequired,
     setMessage: PropTypes.func.isRequired,
     username: PropTypes.string.isRequired,
-    setUserName: PropTypes.func.isRequired
+    setUserName: PropTypes.func.isRequired,
+    onStopPosting: PropTypes.func.isRequired
 }
