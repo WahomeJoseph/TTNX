@@ -2,23 +2,22 @@ import express from 'express'
 import bodyParser from 'body-parser'
 
 import  { getStoredPosts, storePosts } from './data/Posts.js'
+const port = 2700 
 
 const app = express();
-
 app.use(bodyParser.json());
-
 app.use((req, res, next) => {
-  // Attach CORS headers
-  // Required when using a detached backend (that runs on a different domain)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
 
 app.get('/posts', async (req, res) => {
   const storedPosts = await getStoredPosts();
-  // await new Promise((resolve, reject) => setTimeout(() => resolve(), 1500));
   res.json({ posts: storedPosts });
 });
 
@@ -40,4 +39,6 @@ app.post('/posts', async (req, res) => {
   res.status(201).json({ message: 'Stored new post.', post: newPost });
 });
 
-app.listen(8080);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
+})
