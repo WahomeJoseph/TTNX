@@ -3,19 +3,19 @@ import { Head } from "./components/Head"
 import { PostCard } from "./components/PostCard"
 const App = () => {
   const [showModal, setShowModal] = useState(true)
-  const toggleModal = () => {
-    setShowModal(false)
-  }
   const handleModal = () => {
     setShowModal(false)
+  }
+  const toggleModal = () => {
+    setShowModal(true)
   }
 
 
   return (
     <>
-    <Head onCreatePost={handleModal}/>
+    <Head onCreatePost={toggleModal}/>
     <main className="w-full h-screen p-2 bg-gradient-to-r from-[#0f172a]  to-[#334155]">
-      <PostCard isPosting={showModal} onStopPosting={toggleModal}/>
+      <PostCard isPosting={showModal} onStopPosting={handleModal}/>
     </main>
     </>
     

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 export const Post = ({messageChange,nameChange}) => {
     
-const bloggers = ['JWahome', 'WJoseph', 'CPalmer', 'MAoko']
+// const bloggers = ['JWahome', 'WJoseph', 'CPalmer', 'MAoko']
 // const chooseBlogger = Math.random() > 0.75 ? bloggers[0] : Math.random() > 0.5 ? bloggers[1] : Math.random() > 0.25 ? bloggers[2] : bloggers[3]
   return (
     <div  className='flex flex-col p-8 items-center shadow-md shadow-[#f1f1f1] m-8 text-red-600'>

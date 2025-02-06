@@ -2,13 +2,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const Modal = ({children, onClose}) => {
+export const Modal = ({children}) => {
   return (
     <>
-    <div onClick={onClose} className='fixed top-16 left-56 justify-centerw-full h-100vh z-1'>
-        <dialog open={true} className='border-none p-8 z-1 rounded-sm bg-tranparent shadow-sm overflow-hidden'>
-            {children}
-        </dialog>
+    <div className='fixed inset-3 flex items-center justify-center z-20'>
+      <dialog open={true} className='relative p-10 w-full mx-4 rounded-sm bg-transparent overflow-hidden'>
+        {children}
+      </dialog>
     </div>
     </>
     
